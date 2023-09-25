@@ -20,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          # load: true
+          load: true
           tags: rishabh100/sample-cpp-project:latest
       - name: Run Docker container
         run: docker run --rm rishabh100/sample-cpp-project:latest
