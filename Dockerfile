@@ -1,15 +1,10 @@
-FROM archlinux:base-devel
+FROM alpine:latest
 WORKDIR /app
-RUN pacman -Sy --noconfirm --needed glibc reflector
-RUN reflector --country "United States, France, Germany,India, Norway, Australia, Sweden" \
-      --verbose \
-      --sort rate \
-      --protocol https,http \
-      --latest 20 \
-      --save /etc/pacman.d/mirrorlist
 
-RUN pacman -S --noconfirm --needed cmake gtk4 gtkmm-4.0
+RUN apk update
+RUN apk add build-base cmake gtk4.0 gtkmm4 pkgconfig gtk4.0-dev
+
 COPY . /app
 
 RUN ["cmake","CMakeLists.txt"]
-RUN ["make"]
+RUN ["cmake", "--build", "."]
