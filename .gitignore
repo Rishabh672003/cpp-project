@@ -12,3 +12,5 @@ _deps
 bin/*
 .cache
 .cmake
+build/
+CMakeUserPresets.json

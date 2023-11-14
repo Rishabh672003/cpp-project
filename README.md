@@ -1,29 +1,22 @@
-# Sample-cpp-project
+# Sample-cpp-project-with-conan
 
-A simple Cpp project, made to learn Cmake and CPP
+This has been built using conan2 specifically conan2-cmake
 
-## Build Instruction
+## Instruction to setup and build the project
 
-Basic Requirements: Cmake, gtk-3.0, gtkmm
-
-To Install just run
+1. Setup the dependency using conan and cmake using the `conan_provider.cmake`
 
 ```sh
-sudo pacman -Syu --noconfirm --needed cmake gtk3 gtk4 gtkmm3 gtkmm-4.0
+cmake -B build -S . -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=./conan_provider.cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo
 ```
 
-**Now to build Cmake stuff** do :
+2. Now to build the project use Cmake again
 
 ```sh
-cmake CMakeLists.txt
+cmake --build build --config RelwithDebInfo
 ```
 
-**Then to build the app do**:
+### Things to keep in mind
 
-```sh
-make GtkApp
-```
-
-It will build the binary and place it in `bin` directory
-
-so you can run it using: `./bin/GtkApp`
+1. Don't forget to include packages in `conanfile.txt`
+2. Also don't forget to include the required packages in `CMakeLists.txt` using `find_package(<Package Name> REQUIRED)` and `target_link_libraries(cherno PRIVATE <package link path>)`

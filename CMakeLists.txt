@@ -1,19 +1,28 @@
 cmake_minimum_required(VERSION 3.9.1)
 
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_FLAGS "-Wall")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Use the package PkgConfig to detect GTK+ headers/library files
-FIND_PACKAGE(PkgConfig REQUIRED)
-PKG_CHECK_MODULES(GTK REQUIRED gtkmm-4.0)
-INCLUDE_DIRECTORIES(${GTK_INCLUDE_DIRS})
-LINK_DIRECTORIES(${GTK_LIBRARY_DIRS})
-ADD_DEFINITIONS(${GTK_CFLAGS_OTHER})
-
 # add executable
-project(GtkApp)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+project(cherno)
+
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "Debug")
+endif()
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  # Debug-specific options and flags
+  add_compile_definitions(DEBUG)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+else()
+  # Release-specific options and flags
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+endif()
+
+find_package(glfw3 REQUIRED)
+find_package(GLUT REQUIRED)
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-add_executable(GtkApp ${MY_SOURCES})
-# Define MY_SOURCES to be a list of all the source files for my project
-TARGET_LINK_LIBRARIES(GtkApp ${GTK_LIBRARIES})
+add_executable(cherno ${MY_SOURCES})
+target_link_libraries(cherno PRIVATE GLUT::GLUT)
+target_link_libraries(cherno PRIVATE glu::glu)
