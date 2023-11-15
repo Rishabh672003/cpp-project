@@ -5,7 +5,7 @@ set(CMAKE_CXX_FLAGS "-Wall")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # add executable
-project(cherno)
+project(GtkApp)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug")
@@ -20,9 +20,14 @@ else()
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
 
-find_package(glfw3 REQUIRED)
-find_package(GLUT REQUIRED)
+
+FIND_PACKAGE(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(GTK REQUIRED gtkmm-4.0)
+INCLUDE_DIRECTORIES(${GTK_INCLUDE_DIRS})
+LINK_DIRECTORIES(${GTK_LIBRARY_DIRS})
+ADD_DEFINITIONS(${GTK_CFLAGS_OTHER})
+
+find_package(gtk REQUIRED)
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-add_executable(cherno ${MY_SOURCES})
-target_link_libraries(cherno PRIVATE GLUT::GLUT)
-target_link_libraries(cherno PRIVATE glu::glu)
+add_executable(GtkApp ${MY_SOURCES})
+TARGET_LINK_LIBRARIES(GtkApp ${GTK_LIBRARIES})
