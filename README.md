@@ -7,14 +7,23 @@ This has been built using conan2 specifically conan2-cmake
 1. Setup the dependency using conan and cmake using the `conan_provider.cmake`
 
 ```sh
-cmake -B build -S . -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=./conan_provider.cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake -B build -S . -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=./conan_provider.cmake -DCMAKE_BUILD_TYPE=Debug
 ```
 
 2. Now to build the project use Cmake again
 
 ```sh
-cmake --build build --config RelwithDebInfo
+cmake --build build --config Debug
 ```
+
+## Makefile
+
+NOW has a simple Makefile so you can just do
+
+1. `make prepare`
+2. `make builddeps`
+3. `make compile`
+4. `make run`
 
 ### Things to keep in mind
 
