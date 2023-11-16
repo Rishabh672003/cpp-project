@@ -16,6 +16,5 @@ run:
 clean:
 	rm -rf build/ CMakeUserPresets.json
 
-
 cleanbin:
 	rm -rf build/$(project)
