@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -14,18 +15,7 @@ int func() {
 }
 
 int main() {
-    int b = 2;
-    cout << b << "\n";
-    cout << &b << "\n";
-    int* c = &b + 1;
-    cout << &c << "\n";
-    int** d = &c;
-    (*c)++;
-    // b++;
-    cout << *c << "\n";
-    cout << **d << "\n";
-    cout << **d << "\n";
-    cout << **d << "\n";
-    b = 5;
+    std::unique_ptr<int> b = std::make_unique<int>(4);
+    cout << *b << "\n";
     return 0;
 }

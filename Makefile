@@ -1,6 +1,8 @@
 project = GtkApp
 mode = Debug
 
+all: compile
+
 prepare:
 	mkdir build
 
