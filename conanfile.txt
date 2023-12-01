@@ -1,8 +1,5 @@
 [requires]
-opengl/system
-glfw/3.3.4
-glew/2.1.0
-freeglut/3.4.0
+boost/1.83.0
 
 [generators]
 CMakeDeps

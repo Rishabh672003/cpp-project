@@ -1,65 +1,30 @@
-#include <GL/glut.h>
-#include <math.h>
-#include <stdio.h>
-#define pi 3.142857
+#include <boost/multiprecision/cpp_dec_float.hpp>
+#include <iostream>
 
-// function to initialize
-void myInit(void) {
-    // making background color black as first
-    // 3 arguments all are 0.0
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+using boost::multiprecision::cpp_dec_float_50;
+using namespace std;
 
-    // making picture color green (in RGB mode), as middle argument is 1.0
-    glColor3f(0.0, 1.0, 0.0);
-
-    // breadth of picture boundary is 1 pixel
-    glPointSize(1.0);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    // setting window dimension in X- and Y- direction
-    gluOrtho2D(-780, 780, -420, 420);
+template <typename T> inline T area_of_a_circle(T r) {
+    using boost::math::constants::pi;
+    return pi<T>() * r * r;
 }
 
-void display(void) {
-    glClear(GL_COLOR_BUFFER_BIT);
-    glBegin(GL_POINTS);
-    float x, y, i;
+int main() {
+    float radius_f = 123.0 / 100;
+    float area_f = area_of_a_circle(radius_f);
 
-    // iterate y up to 2*pi, i.e., 360 degree
-    // with small increment in angle as
-    // glVertex2i just draws a point on specified coordinate
-    for (i = 0; i < (2 * pi); i += 0.001) {
-        // let 200 is radius of circle and as,
-        // circle is defined as x=r*cos(i) and y=r*sin(i)
-        x = 200 * cos(i);
-        y = 200 * sin(i);
+    double radius_d = 123.0 / 100;
+    double area_d = area_of_a_circle(radius_d);
 
-        glVertex2i(x, y);
-    }
-    glEnd();
-    glFlush();
+    cpp_dec_float_50 r_mp = 123.0 / 100;
+    cpp_dec_float_50 area_mp = area_of_a_circle(r_mp);
+
+    cout << "Float: " << setprecision(numeric_limits<float>::digits10) << area_f
+         << endl;
+    cout << "Double: " << setprecision(numeric_limits<double>::digits10)
+         << area_d << endl;
+    cout << "Boost Multiprecision: "
+         << setprecision(numeric_limits<cpp_dec_float_50>::digits10) << area_mp
+         << endl;
+    return 0;
 }
-
-int main(int argc, char** argv) {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-
-    // giving window size in X- and Y- direction
-    glutInitWindowSize(1366, 768);
-    glutInitWindowPosition(0, 0);
-
-    // Giving name to window
-    glutCreateWindow("Circle Drawing");
-    myInit();
-
-    glutDisplayFunc(display);
-    glutMainLoop();
-}
-
-// int main() {
-//     // Read an integer from stdin
-//     // with an accompanying message
-//     fmt::print(fg(fmt::terminal_color::cyan), "Hello fmt {}!\n",
-//     FMT_VERSION); opengl();
-// }
