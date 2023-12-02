@@ -2,7 +2,6 @@
 #include <iostream>
 
 using boost::multiprecision::cpp_dec_float_50;
-using namespace std;
 
 template <typename T> inline T area_of_a_circle(T r) {
     using boost::math::constants::pi;
@@ -19,12 +18,12 @@ int main() {
     cpp_dec_float_50 r_mp = 123.0 / 100;
     cpp_dec_float_50 area_mp = area_of_a_circle(r_mp);
 
-    cout << "Float: " << setprecision(numeric_limits<float>::digits10) << area_f
-         << endl;
-    cout << "Double: " << setprecision(numeric_limits<double>::digits10)
-         << area_d << endl;
-    cout << "Boost Multiprecision: "
-         << setprecision(numeric_limits<cpp_dec_float_50>::digits10) << area_mp
-         << endl;
+    std::cout << "Float: " << std::setprecision(std::numeric_limits<float>::digits10) << area_f
+         << std::endl;
+    std::cout << "Double: " << std::setprecision(std::numeric_limits<double>::digits10)
+         << area_d << std::endl;
+    std::cout << "Boost Multiprecision: "
+         << std::setprecision(std::numeric_limits<cpp_dec_float_50>::digits10) << area_mp
+         << std::endl;
     return 0;
 }

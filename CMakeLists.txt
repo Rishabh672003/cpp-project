@@ -14,14 +14,13 @@ endif()
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   # Debug-specific options and flags
   add_compile_definitions(DEBUG)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g3")
 else()
   # Release-specific options and flags
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
 
-# find_package(boost REQUIRED)
-find_package(Boost 1.83.0 REQUIRED)
+find_package(Boost REQUIRED)
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_executable(cherno ${MY_SOURCES})
 target_link_libraries(cherno PRIVATE boost::boost)
