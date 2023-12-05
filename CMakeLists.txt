@@ -14,7 +14,7 @@ include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 # Use the package PkgConfig to detect GTK+ headers/library files
 CPMAddPackage(
     NAME GTK
-    GIT_REPOSITORY https://gitlab.gnome.org/GNOME/gtk.git
+    GIT_REPOSITORY https://github.com/GNOME/gtkmm.git
     GIT_TAG main
 )
 # add executable
@@ -22,4 +22,4 @@ project(GtkApp)
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_executable(GtkApp ${MY_SOURCES})
 # Define MY_SOURCES to be a list of all the source files for my project
-TARGET_LINK_LIBRARIES(GtkApp gtk)
+TARGET_LINK_LIBRARIES(GtkApp gtkmm)
