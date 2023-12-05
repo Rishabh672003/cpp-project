@@ -21,6 +21,6 @@ jobs:
         with:
           context: .
           load: true
-          tags: rishabh100/sample-cpp-project:latest
+          tags: rishabh100/cpp-project:latest
       - name: Run Docker container
-        run: docker run --rm rishabh100/sample-cpp-project:latest
+        run: docker run --rm rishabh100/cpp-project:latest
