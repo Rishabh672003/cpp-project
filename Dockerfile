@@ -2,7 +2,7 @@ FROM alpine:latest
 WORKDIR /app
 
 RUN apk update
-RUN apk add build-base cmake
+RUN apk add build-base cmake git
 
 COPY . /app
 
