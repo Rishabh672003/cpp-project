@@ -15,7 +15,7 @@ include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 CPMAddPackage(
     NAME GTK
     GIT_REPOSITORY https://gitlab.gnome.org/GNOME/gtk.git
-    GIT_TAG master
+    GIT_TAG main
 )
 # add executable
 project(GtkApp)
