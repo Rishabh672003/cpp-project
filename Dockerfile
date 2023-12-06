@@ -8,4 +8,3 @@ COPY . /app
 
 RUN ["make", "builddeps"]
 RUN ["make", "compile"]
-RUN ["make", "run"]
