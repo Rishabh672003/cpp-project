@@ -1,7 +1,7 @@
 #include <gtkmm/application.h>
 #include <gtkmm/togglebutton.h>
 #include <gtkmm/window.h>
-#include <iostream>
+#include <fmt/core.h>
 
 class MainWindow : public Gtk::Window {
   public:
@@ -28,9 +28,9 @@ void MainWindow::onToggleClicked() {
     bool isToggled = toggleButton.get_active();
 
     if (isToggled) {
-        std::cout << "Toggle button is on" << std::endl;
+        fmt::print("Toggle button is on\n");
     } else {
-        std::cout << "Toggle button is off" << std::endl;
+        fmt::print("Toggle button is off\n");
     }
 }
 
