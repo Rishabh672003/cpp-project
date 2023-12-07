@@ -1,22 +1,16 @@
-# Sample-cpp-project-with-conan
+# Sample-cpp-project-with-cpm
 
-This has been built using conan2 specifically conan2-cmake
+This has been built using CPM specifically cpm.cmake
 
 ## Instruction to setup and build the project
 
-1. Setup the dependency using conan and cmake using the `conan_provider.cmake`
+I have given a makefile so you can just do 
 
-```sh
-cmake -B build -S . -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=./conan_provider.cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo
-```
-
-2. Now to build the project use Cmake again
-
-```sh
-cmake --build build --config RelwithDebInfo
-```
+- `make prepare`
+- `make builddeps`
+- `make compile`
 
 ### Things to keep in mind
 
-1. Don't forget to include packages in `conanfile.txt`
-2. Also don't forget to include the required packages in `CMakeLists.txt` using `find_package(<Package Name> REQUIRED)` and `target_link_libraries(cherno PRIVATE <package link path>)`
+1. Don't forget to include packages in `CMakeLists.txt`
+2. Also don't forget to include the required packages in `CMakeLists.txt` using `CPMAddPackage(<Package Name>)` and `target_link_libraries(cherno PRIVATE <package link path>)`
